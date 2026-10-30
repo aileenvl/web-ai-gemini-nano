@@ -1,0 +1,92 @@
+:root{--paper:#f4f3ec;--surface:#fffefa;--ink:#162e34;--muted:#506164;--line:#ccd1c8;--accent:#dced7e;--error:#a52f22;--soft:#e9ede5;--focus:#145fce;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:var(--paper);font-size:16px;line-height:1.5;color-scheme:light}
+
+*{box-sizing:border-box}
+body{margin:0}
+button,textarea,input{font:inherit}
+button,a,summary,input{touch-action:manipulation}
+button{cursor:pointer;border:1px solid var(--ink);background:var(--surface);color:var(--ink);font-size:.875rem;font-weight:700;border-radius:5px;padding:.65rem 1rem;min-height:44px}
+button:hover:not(:disabled){background:var(--soft)}
+button:disabled{opacity:.45;cursor:not-allowed}
+button.primary{background:var(--ink);color:white}
+button.primary:hover:not(:disabled){background:#284b51}
+button.text-button{border-color:transparent;padding:.5rem 0;text-decoration:underline;text-underline-offset:4px}
+.export-button{width:100%;margin-top:.75rem;background:var(--accent)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:4px}
+textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:5px;background:var(--surface);color:var(--ink);padding:1rem;line-height:1.6;resize:vertical}
+textarea:read-only,input:read-only{background:var(--soft)}
+textarea::placeholder{color:var(--muted);opacity:1}
+textarea[aria-invalid=true]{border-color:var(--error)}
+h1,h2,h3,p{margin:0}
+h2,h3{font-size:1.2rem;line-height:1.3;letter-spacing:-.025em}
+a{color:var(--ink);text-underline-offset:4px}
+.page{max-width:1240px;margin:auto;padding:0 2.5rem}
+.page-header{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.5rem 0;border-bottom:1px solid var(--line);font-size:.7rem;font-weight:700;letter-spacing:.09em}
+.brand{display:flex;align-items:center;gap:.75rem}
+.brand-mark{font-size:1.25rem;font-weight:800;border:1px solid var(--ink);width:36px;height:36px;display:grid;place-items:center;background:var(--accent);letter-spacing:-.1em}
+.environment{font-weight:400;letter-spacing:0;color:var(--muted)}
+.intro{padding:2.5rem 0 2rem;max-width:780px}
+.eyebrow,.step{font-size:.65rem;font-weight:700;letter-spacing:.13em;color:var(--muted)}
+h1{font-size:clamp(2.4rem,4.6vw,4rem);line-height:1.05;letter-spacing:-.055em;margin:1rem 0 1.25rem}
+h1 span{box-shadow:inset 0 -.18em var(--accent)}
+.lead{max-width:560px;color:var(--muted);font-size:1rem}
+.ai-console{border:1px solid var(--ink);border-radius:6px;background:var(--surface);margin-bottom:2rem}
+.console-heading{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.25rem 1.5rem;border-bottom:1px solid var(--line)}
+.console-heading h2{font-size:1rem}
+.console-heading p{font-size:.75rem;margin-top:.25rem;color:var(--muted)}
+.prepare-buttons{display:flex;gap:.5rem;flex-shrink:0}
+.api-status{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin:0;padding:1rem 1.5rem}
+.api-status dt{font-size:.75rem;font-weight:700;margin-bottom:.25rem}
+.api-status dd{font-size:.8rem;margin:0;color:var(--muted)}
+progress{width:100%;height:8px;accent-color:var(--ink);margin-top:.5rem}
+.status{font-size:.8rem;padding:.75rem 1.5rem;background:var(--soft);border-top:1px solid var(--line);min-height:3rem}
+.connection{padding:.5rem 1.5rem;font-size:.7rem;color:var(--muted)}
+.workspace{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start}
+.section-heading{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1rem}
+.step{margin-bottom:.35rem}
+.field-help{font-size:.75rem;color:var(--muted);margin:.75rem 0}
+.field-label{display:block;font-size:.75rem;font-weight:700;margin-bottom:.5rem}
+#notes{font-size:.85rem;min-height:410px}
+.notes-footer{display:flex;justify-content:space-between;gap:1rem;font-size:.65rem;color:var(--muted);margin-top:.5rem}
+.field-error{font-size:.75rem;color:var(--error);min-height:1.25rem;margin-top:.25rem}
+.result-block{border-bottom:1px solid var(--line);padding-bottom:1rem;margin-bottom:1.5rem}
+.result-block textarea{font-size:.85rem}
+.empty-state{font-size:.8rem;color:var(--muted);border-left:3px solid var(--line);padding:.75rem 1rem;margin:1rem 0}
+.action-list{padding:0;margin:1rem 0;list-style:none;counter-reset:actions}
+.action-list li{counter-increment:actions;padding:1rem 0;border-top:1px solid var(--line)}
+.action-list li::before{content:"0" counter(actions);display:block;font-size:.7rem;font-weight:700;margin-bottom:.5rem;color:var(--muted)}
+.action-list label{display:block;font-size:.7rem;font-weight:700;margin:.5rem 0 .25rem}
+.action-list input[type=text],.action-list textarea{padding:.65rem;font-size:.8rem}
+.action-list .check-label{display:flex;align-items:center;gap:.5rem;margin-top:.75rem;font-weight:400}
+.action-list input[type=checkbox]{width:18px;height:18px;accent-color:var(--ink)}
+.review-note{font-size:.75rem;color:var(--muted);padding:1rem;background:#e9edda;border-left:3px solid var(--ink)}
+.review-note strong{display:block;color:var(--ink);margin-bottom:.25rem}
+.requirements{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:1rem 0;margin:2.5rem 0 1rem;font-size:.8rem}
+.requirements summary{cursor:pointer;font-weight:700;min-height:32px}
+.requirements p{max-width:800px;margin:.75rem 0;color:var(--muted)}
+footer{display:flex;justify-content:space-between;gap:1rem;font-size:.65rem;color:var(--muted);padding:1rem 0 2rem}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip-link{position:absolute;left:1rem;top:-100px;padding:.75rem;background:var(--surface);z-index:10}
+.skip-link:focus{top:1rem}
+[hidden]{display:none!important}
+
+@media(max-width:850px){.page{padding:0 1.5rem}
+.workspace{grid-template-columns:1fr;gap:2rem}
+#notes{min-height:320px}
+.intro{padding-top:2rem}
+.console-heading{align-items:flex-start;flex-direction:column}
+.prepare-buttons{width:100%}
+.prepare-buttons button{flex:1}
+}
+
+@media(max-width:450px){.page{padding:0 1rem}
+.environment{max-width:110px;text-align:right}
+.api-status{grid-template-columns:1fr;gap:1rem}
+.console-heading,.api-status{padding:1rem}
+.status,.connection{padding:.75rem 1rem}
+.section-heading{align-items:flex-start;flex-wrap:wrap;gap:.75rem}
+.notes-footer,footer{flex-direction:column;gap:.25rem}
+h1{font-size:2.5rem}
+.intro{padding-top:1.5rem}
+.lead{font-size:.9rem}
+}
+

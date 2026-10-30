@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; img-src 'self' data:">
+  <meta name="description" content="Una libreta de conferencia con resúmenes y propuestas de acciones mediante las APIs de IA nativas de Chrome.">
+  <title>Notas que se convierten en próximos pasos · Web AI</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#notes">Ir a mis notas</a>
+  <div class="page">
+    <header class="page-header">
+      <div class="brand"><span class="brand-mark" aria-hidden="true">N.</span> WEB AI / GEMINI NANO</div>
+      <span class="environment">Demo local · Chrome de escritorio</span>
+    </header>
+    <main>
+      <div class="intro">
+        <p class="eyebrow">TU PRÓXIMA CONFERENCIA, MEJOR APROVECHADA</p>
+        <h1>De mis notas a<br><span>mis próximos pasos.</span></h1>
+        <p class="lead">Escribe, resume y revisa qué quieres llevar a la práctica. La IA es una ayuda; tú decides qué conservar.</p>
+      </div>
+
+      <section class="ai-console" aria-labelledby="ai-title">
+        <div class="console-heading">
+          <div><h2 id="ai-title">IA en este dispositivo</h2><p>Chrome 149+ recomendado para español. Descarga inicial necesaria; latencia variable.</p></div>
+          <div class="prepare-buttons">
+            <button id="prepare" type="button" class="primary" disabled>Preparar IA</button>
+            <button id="cancel" type="button" disabled>Cancelar</button>
+          </div>
+        </div>
+        <dl class="api-status">
+          <div><dt>Summarizer API</dt><dd id="summary-status">Comprobando compatibilidad…</dd><progress id="summary-progress" max="1" value="0" aria-label="Descarga para resúmenes" hidden></progress></div>
+          <div><dt>Prompt API</dt><dd id="prompt-status">Comprobando compatibilidad…</dd><progress id="prompt-progress" max="1" value="0" aria-label="Descarga para propuestas" hidden></progress></div>
+        </dl>
+        <p id="status" class="status" role="status" aria-live="polite" aria-atomic="true">Puedes editar y exportar tus notas mientras comprobamos las APIs.</p>
+        <p id="connection" class="connection"></p>
+      </section>
+
+      <div class="workspace">
+        <section class="notes-panel" aria-labelledby="notes-title">
+          <div class="section-heading"><div><p class="step">01 / CAPTURA</p><h2 id="notes-title">Mis notas</h2></div><button id="reset" type="button" class="text-button">Restablecer ejemplo</button></div>
+          <label class="sr-only" for="notes">Notas de la conferencia, en español</label>
+          <p id="notes-help" class="field-help">Pega un fragmento en español de 80 a 6,000 caracteres. No se recorta tu texto. Al editarlo se borran los resultados anteriores.</p>
+          <textarea id="notes" rows="17" aria-describedby="notes-help notes-count notes-error" spellcheck="true"></textarea>
+          <div class="notes-footer"><p id="notes-count" class="counter"></p><span>Solo texto · sin guardado automático</span></div>
+          <p id="notes-error" class="field-error" aria-live="polite"></p>
+          <button id="export" type="button" class="export-button">Exportar notas</button>
+          <p class="field-help">Exporta un archivo Markdown con tus notas y los resultados editados. Si cierras o recargas esta página, se pierde lo no exportado.</p>
+        </section>
+
+        <section class="results-panel" aria-labelledby="results-title">
+          <h2 id="results-title" class="sr-only">Resultados para revisar</h2>
+          <div class="result-block">
+            <div class="section-heading"><div><p class="step">02 / SINTETIZA</p><h3>Las ideas clave</h3></div><button id="summarize" type="button" disabled>Resumir</button></div>
+            <label for="summary" class="field-label">Resumen editable</label>
+            <textarea id="summary" rows="6" placeholder="El resumen aparecerá aquí. También puedes escribirlo tú." aria-describedby="summary-help"></textarea>
+            <p id="summary-help" class="field-help">Summarizer API · puntos clave · español. Compara siempre el resumen con las notas.</p>
+          </div>
+          <div class="result-block">
+            <div class="section-heading"><div><p class="step">03 / DECIDE</p><h3 id="actions-title" tabindex="-1">Del aprendizaje a la acción</h3></div><button id="propose" type="button" disabled>Proponer acciones</button></div>
+            <p class="field-help">Prompt API · hasta 5 propuestas, cada una con una cita de tus notas. Edita el texto y marca las que hayas revisado.</p>
+            <p id="actions-empty" class="empty-state">Aún no hay propuestas. Primero prepara la IA; después decide qué aplicar.</p>
+            <ol id="actions" class="action-list"></ol>
+          </div>
+          <aside class="review-note"><strong>Una cita no demuestra que algo sea cierto.</strong> La evidencia solo comprueba que ese fragmento aparece en tus notas. Las propuestas pueden contener errores y no ejecutan ninguna acción.</aside>
+        </section>
+      </div>
+
+      <details class="requirements"><summary>Compatibilidad, privacidad y modo sin conexión</summary><div>
+        <p>La IA nativa necesita un equipo de escritorio compatible y espacio para descargar el modelo. No está disponible en todos los navegadores ni en Chrome móvil. La comprobación real de disponibilidad manda sobre la versión del navegador.</p>
+        <p>Esta demo no envía tus notas a servicios remotos ni incorpora analítica. Chrome administra la descarga y las actualizaciones del modelo por separado. No hay fallback a la nube.</p>
+        <p>Con el modelo listo y esta página ya cargada puedes probar la inferencia sin conexión. No es una PWA: no se garantiza abrirla o recargarla sin red ni sin el servidor local.</p>
+      </div></details>
+    </main>
+    <footer><span>Una libreta pequeña. Un caso de uso real.</span><a href="https://developer.chrome.com/docs/ai/built-in-apis" target="_blank" rel="noreferrer noopener">Documentación de Chrome ↗</a></footer>
+    <noscript><p>Activa JavaScript para preparar la IA y exportar. Sin JavaScript puedes escribir en el campo de notas y copiar su contenido manualmente.</p></noscript>
+  </div>
+</body>
+</html>
